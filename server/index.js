@@ -2,16 +2,14 @@ const express = require('express')
 require('dotenv').config()
 const connectDB = require('./config/db_connect')
 const app = express()
+const router = require('./routes')
 const port = process.env.PORT || 3000
-
-app.get('/', (req, res) => {
-  res.send('Hello World!')
-})
 
 app.use(express.json());
 
 connectDB()
+router(app)
 
 app.listen(port, () => {
-  console.log(`Example app listening on port ${port}`)
+  console.log(`Booking web app listening on port ${port}`)
 })

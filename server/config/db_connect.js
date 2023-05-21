@@ -1,21 +1,16 @@
-const mysql = require('mysql2')
+const mongoose = require("mongoose");
 require('dotenv').config()
 
-const mysqlConfig = {
-  host: 'localhost',
-  user: process.env.DB_USERNAME,
-  password: process.env.DB_PASSWORD,
-  database: process.env.DB_NAME
-};
-
-async function connectDB() {
+async function connectToDatabase() {
   try {
-    await mysql.createConnection(mysqlConfig)
-    console.log('Connected to MySQL database for booking web')
-  }
-  catch (error) {
-    console.log(`Error: ${error.message}`)
+    await mongoose.connect(process.env.CONNECTION_STRING, {
+      useNewUrlParser: true,
+      useUnifiedTopology: true
+    });
+    console.log('Connected to MongoDB for booking web');
+  } catch (err) {
+    console.log(err);
   }
 }
 
-module.exports = connectDB
+module.exports = connectToDatabase
