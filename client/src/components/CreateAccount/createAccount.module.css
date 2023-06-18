@@ -1,0 +1,86 @@
+:root {
+    --blue: #006ce4;
+}
+
+.wrapper {
+    display: flex;
+    flex-direction: row;
+    gap: 2rem;
+    margin: 3rem auto;
+    box-shadow: rgba(0, 0, 0, 0.2) 0px 1px 6px 2px;
+    width: calc(1000px + 2rem);
+}
+
+.imageWrapper {
+    width: 500px;
+}
+
+.imageWrapper img {
+    width: 500px;
+    height: 100%;
+}
+
+.formWrapper {
+    width: 500px;
+    padding-top: 2rem;
+    padding-right: 2rem;
+    padding-bottom: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.formTitle {
+    font-size: 28px;
+    line-height: 32px;
+}
+
+.formSubTitle {
+    font-size: 18px;
+    line-height: 24px;
+}
+
+.formInputLabel {
+    color: var(--blue);
+    font-weight: 700;
+    line-height: 24px;
+    padding-left: 1rem;
+}
+
+.formWrapper input {
+    height: 40px;
+    padding: 0 1rem;
+    border-radius: 20px;
+    outline: none;
+    border: 1px solid #bbb;
+    width: calc(100% - 2rem);
+}
+
+.formWrapper input:focus {
+    border: 1px solid var(--blue);
+}
+
+.formWrapper button {
+    border: none;
+    background-color: var(--blue);
+    color: white;
+    font-weight: 700;
+    transition: background-color 500ms;
+    cursor: pointer;
+    height: 40px;
+    border-radius: 20px;
+    margin-top: 10px;
+    font-size: 14px;
+}
+
+.formWrapper button:hover {
+    border: none;
+    background-color: blue;
+    color: white;
+    font-weight: 700;
+}
+
+.formNote {
+    font-size: 13px;
+    text-align: center;
+}
