@@ -48,12 +48,12 @@
     height: 60px;
     padding: 0 1rem;
     cursor: pointer;
-    transition: color 500ms, background-color 500ms;
+    color: var(--blue);
+    transition: background-color 500ms;
 }
 
 .navWrapper button:hover {
     background-color: rgba(0, 0, 0, 0.15);
-    color: var(--blue);
 }
 
 .rightWrapper {
@@ -66,7 +66,7 @@
     display: flex;
     flex-direction: row;
     align-items: center;
-    gap: 1rem
+    gap: 1rem;
 }
 
 .accountWrapper button {
@@ -84,4 +84,44 @@
 .accountWrapper button:hover {
     color: white;
     background-color: var(--blue);
+}
+
+.userWrapper {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 2rem;
+}
+
+.userWrapper button {
+    background-color: white;
+    border: none;
+    border-radius: 20px;
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--blue);
+    padding: 0.5rem 1.5rem;
+    cursor: pointer;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 0.5rem;
+    transition: color 500ms, background-color 500ms;
+}
+
+.userWrapper button:hover {
+    color: white;
+    background-color: var(--blue);
+}
+
+.dropdownWrapper {
+    position: fixed;
+    top: 48px;
+    right: 135px;
+    width: 160px;
+    height: 100px;
+    border-radius: 20px;
+    box-shadow: rgba(0, 0, 0, 0.2) 0px 1px 6px 2px;
+    background-color: white;
+    padding: 1rem;
 }

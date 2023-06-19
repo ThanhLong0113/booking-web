@@ -47,6 +47,13 @@
     padding-left: 1rem;
 }
 
+.formError {
+    color: red;
+    font-weight: 700;
+    line-height: 24px;
+    padding-left: 1rem;
+}
+
 .formWrapper input {
     height: 40px;
     padding: 0 1rem;

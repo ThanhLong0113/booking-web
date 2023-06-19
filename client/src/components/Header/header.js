@@ -1,10 +1,36 @@
-import React from 'react'
+import React, { useState, useEffect, useCallback } from 'react'
 import header from './header.module.css'
 import Logo from '../../assets/images/brand_logo.png'
 import { useNavigate } from 'react-router-dom'
+import { FaUser } from 'react-icons/fa'
+import { BsCartFill } from 'react-icons/bs'
+import axios from 'axios'
 
 const Header = () => {
     const navigate = useNavigate()
+    const isSignedIn = localStorage.getItem('token')
+    const [userName, setUserName] = useState()
+    const [isDropdown, setIsDropdown] = useState(false)
+
+    const getUserData = useCallback(async function getUserData() {
+        try {
+            const res = await axios.get(`http://localhost:5000/users/${isSignedIn}`);
+            setUserName(res.data.existedUser.last_name)
+        } catch (err) {
+            console.log(err)
+        }
+    }, [isSignedIn])
+
+    useEffect(() => {
+        if (isSignedIn) {
+            getUserData()
+        }
+    }, [isSignedIn, getUserData])
+
+    const handleDropdownToggle = () => {
+        setIsDropdown(!isDropdown);
+    };
+
     return (
         <div className={header.wrapper}>
             <div className={header.leftWrapper}>
@@ -20,10 +46,31 @@ const Header = () => {
             </div>
 
             <div className={header.rightWrapper}>
-                <div className={header.accountWrapper}>
-                    <button onClick={() => navigate('/sign-in')}>Đăng nhập</button>
-                    <button onClick={() => navigate('/create-account')}>Đăng ký</button>
-                </div>
+                {isSignedIn ?
+                    (<div className={header.userWrapper}>
+                        <button onMouseEnter={handleDropdownToggle} onMouseLeave={handleDropdownToggle}>
+                            <FaUser size={18} />
+                            {userName && (<p>{`Hi, ${userName}`}</p>)}
+                            {isDropdown && (
+                                <div className={header.dropdownWrapper}>
+                                    <button>
+                                        <p>Tài khoản của tôi</p>
+                                    </button>
+                                    <button>
+                                        <p>Đăng xuất</p>
+                                    </button>
+                                </div>
+                            )}
+                        </button>
+
+                        <button>
+                            <BsCartFill size={18} />
+                            <p>Cart</p>
+                        </button>
+                    </div>) : (<div className={header.accountWrapper}>
+                        <button onClick={() => navigate('/sign-in')}>Đăng nhập</button>
+                        <button onClick={() => navigate('/create-account')}>Đăng ký</button>
+                    </div>)}
             </div>
         </div>
     )
