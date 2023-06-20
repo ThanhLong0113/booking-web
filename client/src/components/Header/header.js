@@ -3,7 +3,7 @@ import header from './header.module.css'
 import Logo from '../../assets/images/brand_logo.png'
 import { useNavigate } from 'react-router-dom'
 import { FaUser } from 'react-icons/fa'
-import { BsCartFill } from 'react-icons/bs'
+import { BsCartFill, BsCircleFill } from 'react-icons/bs'
 import axios from 'axios'
 
 const Header = () => {
@@ -31,6 +31,11 @@ const Header = () => {
         setIsDropdown(!isDropdown);
     };
 
+    const handleLogOut = () => {
+        localStorage.removeItem('token')
+        navigate('/')
+    }
+
     return (
         <div className={header.wrapper}>
             <div className={header.leftWrapper}>
@@ -48,22 +53,25 @@ const Header = () => {
             <div className={header.rightWrapper}>
                 {isSignedIn ?
                     (<div className={header.userWrapper}>
-                        <button onMouseEnter={handleDropdownToggle} onMouseLeave={handleDropdownToggle}>
+                        <button className={header.userButton} onMouseEnter={handleDropdownToggle} onMouseLeave={handleDropdownToggle}
+                        onClick={handleLogOut}>
                             <FaUser size={18} />
                             {userName && (<p>{`Hi, ${userName}`}</p>)}
                             {isDropdown && (
                                 <div className={header.dropdownWrapper}>
-                                    <button>
+                                    <button className={header.dropdownButton}>
+                                        <BsCircleFill size={14}/>
                                         <p>Tài khoản của tôi</p>
                                     </button>
-                                    <button>
+                                    <button className={header.dropdownButton}>
+                                        <BsCircleFill size={14}/>
                                         <p>Đăng xuất</p>
                                     </button>
                                 </div>
                             )}
                         </button>
 
-                        <button>
+                        <button className={header.userButton}>
                             <BsCartFill size={18} />
                             <p>Cart</p>
                         </button>
