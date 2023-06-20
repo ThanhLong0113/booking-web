@@ -10,11 +10,6 @@ const destinationSchema = new Schema({
         type: String,
         required: true,
     },
-    hotels: {
-        type: Array,
-        ref: 'Hotel',
-        match: { city_name: $name }
-    },
     description: {
         type: String
     }

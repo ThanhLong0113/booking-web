@@ -21,11 +21,6 @@ const hotelSchema = new Schema({
     description: {
         type: String
     },
-    rooms: {
-        type: Array,
-        ref: 'Room',
-        match: { hotel_id: $_id }
-    }
 })
 
 module.exports = mongoose.model("Hotel", hotelSchema);
