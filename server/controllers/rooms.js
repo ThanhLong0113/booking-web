@@ -1,50 +1,52 @@
 const RoomModel = require('../models/room')
 
-exports.createHotel = async (req, res) => {
+exports.createRoom = async (req, res) => {
     try {
-        const newHotel = await HotelModel.create(req.body)
-        return res.status(200).json({ newHotel: newHotel });
+        const existedRoom = await RoomModel.findOne({ name: req.body.name })
+        if(existedRoom) return res.status(400).json({ error: 'Loại phòng đã tồn tại!'})
+        const newRoom = await RoomModel.create(req.body)
+        return res.status(200).json({ newRoom: newRoom })
     } 
     catch (err) {
-        res.status(500).json({ error: err.message });
+        res.status(500).json({ error: err.message })
     }
 }
 
-/*exports.findAllDestinations = async (req, res) => {
+exports.findAllRooms = async (req, res) => {
     try {
-        const allDestinations = await DestinationModel.find()
-        return res.status(200).json({ allDestinations: allDestinations })
+        const allRooms = await RoomModel.find()
+        return res.status(200).json({ allRooms: allRooms })
     }
     catch (err) {
-        res.status(500).json({ error: err.message });
+        res.status(500).json({ error: err.message })
     }
 }
 
-exports.findDestinationById = async (req, res) => {
+exports.findRoomById = async (req, res) => {
     try {
-        const existedDestination = await DestinationModel.findOne({ _id: req.params.id })
-        return res.status(200).json({ existedDestination: existedDestination });
+        const existedRoom = await RoomModel.findOne({ _id: req.params.id })
+        return res.status(200).json({ existedRoom: existedRoom })
     }
     catch (err) {
-        res.status(500).json({ error: err.message });
+        res.status(500).json({ error: err.message })
     }
 }
 
-exports.updateUser = async (req, res) => {
+exports.updateRoom = async (req, res) => {
     try {
-        const updateUser = await UserModel.findByIdAndUpdate(req.params.id, req.body)
-        res.json({ data: updateUser, status: "success" });
+        const updateRoom = await RoomModel.findByIdAndUpdate(req.params.id, req.body)
+        res.json({ updateRoom: updateRoom, status: "success" })
     } 
     catch (err) {
-        res.status(500).json({ error: err.message });
+        res.status(500).json({ error: err.message })
     }
 }
 
-exports.deleteUser = async (req, res) => {
+exports.deleteRoom = async (req, res) => {
   try {
-    const deleteUser = await UserModel.findOneAndDelete(req.params.id);
-    res.json({ data: deleteUser, status: "success" });
+    const deleteRoom = await RoomModel.findOneAndDelete(req.params.id);
+    res.json({ deleteRoom: deleteRoom, status: "success" })
   } catch (err) {
-    res.status(500).json({ error: err.message });
+    res.status(500).json({ error: err.message })
   }
-};*/
+}

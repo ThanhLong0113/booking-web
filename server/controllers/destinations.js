@@ -5,23 +5,30 @@ exports.createDestination = async (req, res) => {
         const existedDestination = await DestinationModel.findOne({ name: req.body.name })
         if(existedDestination) return res.status(400).json({ error: 'Địa điểm du lịch đã tồn tại!'})
         const newDestination = await DestinationModel.create(req.body)
-        return res.status(200).json({ newDestination: newDestination });
+        return res.status(200).json({ newDestination: newDestination })
     } 
     catch (err) {
-        res.status(500).json({ error: err.message });
+        res.status(500).json({ error: err.message })
     }
 }
 
-
-
+exports.findAllDestinations = async (req, res) => {
+    try {
+        const allDestinations = await DestinationModel.find()
+        return res.status(200).json({ allDestinations: allDestinations })
+    }
+    catch (err) {
+        res.status(500).json({ error: err.message })
+    }
+}
 
 exports.findDestinationById = async (req, res) => {
     try {
         const existedDestination = await DestinationModel.findOne({ _id: req.params.id })
-        return res.status(200).json({ existedDestination: existedDestination });
+        return res.status(200).json({ existedDestination: existedDestination })
     }
     catch (err) {
-        res.status(500).json({ error: err.message });
+        res.status(500).json({ error: err.message })
     }
 }
 

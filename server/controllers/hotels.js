@@ -3,34 +3,34 @@ const HotelModel = require('../models/hotel')
 exports.createHotel = async (req, res) => {
     try {
         const newHotel = await HotelModel.create(req.body)
-        return res.status(200).json({ newHotel: newHotel });
+        return res.status(200).json({ newHotel: newHotel })
     } 
     catch (err) {
-        res.status(500).json({ error: err.message });
+        res.status(500).json({ error: err.message })
     }
 }
 
-/*exports.findAllDestinations = async (req, res) => {
+exports.findAllHotels = async (req, res) => {
     try {
-        const allDestinations = await DestinationModel.find()
-        return res.status(200).json({ allDestinations: allDestinations })
+        const allHotels = await HotelModel.find()
+        return res.status(200).json({ allHotels: allHotels })
     }
     catch (err) {
-        res.status(500).json({ error: err.message });
+        res.status(500).json({ error: err.message })
     }
 }
 
-exports.findDestinationById = async (req, res) => {
+exports.findHotelById = async (req, res) => {
     try {
-        const existedDestination = await DestinationModel.findOne({ _id: req.params.id })
-        return res.status(200).json({ existedDestination: existedDestination });
+        const existedHotel = await HotelModel.findOne({ _id: req.params.id })
+        return res.status(200).json({ existedHotel: existedHotel })
     }
     catch (err) {
-        res.status(500).json({ error: err.message });
+        res.status(500).json({ error: err.message })
     }
 }
 
-exports.updateUser = async (req, res) => {
+/*exports.updateUser = async (req, res) => {
     try {
         const updateUser = await UserModel.findByIdAndUpdate(req.params.id, req.body)
         res.json({ data: updateUser, status: "success" });
