@@ -1,7 +1,7 @@
-const usersRouter = require('./user')
+const customersRouter = require('./customer')
 
 const route = (app) => {
-    app.use('/users', usersRouter)
+    app.use('/customers', customersRouter)
 }
 
 module.exports = route
