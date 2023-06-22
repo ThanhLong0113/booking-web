@@ -1,28 +1,41 @@
 import React from 'react'
 import TinySlider from "tiny-slider-react";
+import { FiChevronLeft, FiChevronRight } from 'react-icons/fi'
 import 'tiny-slider/dist/tiny-slider.css';
 import destinationSlider from './destinationSlider.module.css'
+import './navButton.css'
 
-const DestinationSlider = () => {
+const DestinationSlider = ({ allDestinations }) => {
     const settings = {
         gutter: 20,
-        fixedWidth: 160,
+        fixedWidth: 180,
         controlsText: ['', ''],
-        controlsContainer: ['.prevButton', '.nextButton'],
-        autoplay: true,
+        prevButton: '.prevButton',
+        nextButton: '.nextButton',
+        items: 6,
+        slideBy: 1,
         speed: 300,
-        autoplayTimeout: 1000,
         loop: false,
-        rewind: true,
         lazyload: true,
         mouseDrag: true
     }
 
     return (
         <div className={destinationSlider.wrapper}>
+            <button className='prevButton'>
+                <FiChevronLeft/>
+            </button>
             <TinySlider settings={settings}>
-
+                {allDestinations.map((element, index) => (
+                    <div key={index}>
+                        <img src={element.image} alt='' className={destinationSlider.image}></img>
+                        <p className={destinationSlider.name}>{element.name}</p>
+                    </div>
+                ))}
             </TinySlider>
+            <button className='nextButton'>
+                <FiChevronRight/>
+            </button>
         </div>
     )
 }

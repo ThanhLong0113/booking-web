@@ -1,0 +1,16 @@
+.wrapper {
+    width: 1200px;
+    margin: auto;
+    position: relative;
+}
+
+.image {
+    width: 125px;
+    height: 125px;
+    border-radius: 50%;
+    margin-left: 27.5px;
+}
+
+.name {
+    text-align: center;
+}

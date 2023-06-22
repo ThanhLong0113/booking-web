@@ -1,0 +1,23 @@
+.prevButton {
+    position: absolute;
+    top: 83.7px;
+    left: -18px;
+    background-color: gray;
+    width: 36px;
+    height: 36px;
+    border: none;
+    border-radius: 50%;
+    z-index: 999;
+}
+
+.nextButton {
+    position: absolute;
+    top: 83.7px;
+    right: -18px;
+    background-color: gray;
+    width: 36px;
+    height: 36px;
+    border: none;
+    border-radius: 50%;
+    z-index: 999;
+}

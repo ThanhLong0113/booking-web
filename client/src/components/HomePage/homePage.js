@@ -1,9 +1,11 @@
-import React, { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import Header from '../Header'
 import DestinationSlider from "../DestinationSlider/";
 import axios from 'axios'
 
 const HomePage = () => {
+    const [isLoading, setIsLoading] = useState(true)
+    const [allDestinations, setAllDestinations] = useState()
     async function loadAllDestinations() {
         try {
             const res = await axios.get('http://localhost:5000/destinations');
@@ -15,14 +17,17 @@ const HomePage = () => {
 
     useEffect(() => {
         loadAllDestinations().then(res => {
-            console.log(res)
+            setAllDestinations(res.data.allDestinations)
+            setIsLoading(false)
         })
-    })
+    }, [])
+
+    if(isLoading) return <></>
 
     return (
         <>
             <Header></Header>
-            <h1>Hello</h1>
+            <DestinationSlider allDestinations={allDestinations}/>
         </>
     )
 }
