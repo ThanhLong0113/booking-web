@@ -1,0 +1,37 @@
+.wrapper {
+    padding: 30px 0;
+}
+
+.title {
+    font-size: 30px;
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.tabBar {
+    margin-top: 30px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.tabButtonFocus {
+    background-color: white;
+    border: none;
+    border-bottom: 2px solid var(--blue);
+    padding: 10px 20px;
+    color: var(--blue);
+    transition: border-bottom 300ms, color 300ms;
+    cursor: pointer;
+}
+
+.tabButton {
+    background-color: white;
+    border: none;
+    border-bottom: 2px solid var(--gray);
+    padding: 10px 20px;
+    color: var(--gray);
+    transition: border-bottom 300ms, color 300ms;
+    cursor: pointer;
+}

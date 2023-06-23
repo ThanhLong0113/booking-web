@@ -1,34 +1,27 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import Header from '../Header'
+import Footer from "../Footer";
 import DestinationSlider from "../DestinationSlider/";
-import axios from 'axios'
+import HotelTab from "../HotelTab/hotelTab";
+import LoadingSpinner from "../LoadingSpinner"
+import { useAllDestinations } from "../../talons/useAllDestinations";
 
 const HomePage = () => {
-    const [isLoading, setIsLoading] = useState(true)
-    const [allDestinations, setAllDestinations] = useState()
-    async function loadAllDestinations() {
-        try {
-            const res = await axios.get('http://localhost:5000/destinations');
-            return res
-        } catch (err) {
-            //setError(err.response.data.error)
-        }
-    }
+    const getAllDestinations = useAllDestinations()
+    const {
+        isLoading: isLoadingAllDestinations,
+        allDestinations
+    } = getAllDestinations
 
-    useEffect(() => {
-        loadAllDestinations().then(res => {
-            setAllDestinations(res.data.allDestinations)
-            setIsLoading(false)
-        })
-    }, [])
-
-    if(isLoading) return <></>
+    if(isLoadingAllDestinations) return <LoadingSpinner/>
 
     return (
-        <>
-            <Header></Header>
+        <div>
+            <Header/>
             <DestinationSlider allDestinations={allDestinations}/>
-        </>
+            <HotelTab allDestinations={allDestinations}/>
+            <Footer/>
+        </div>
     )
 }
 

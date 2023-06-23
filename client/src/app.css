@@ -3,8 +3,17 @@
     src: url('./fonts/Poppins_Regular.ttf');
 }
 
+:root {
+    --blue: #006ce4;
+    --gray: #767676;
+}
+
 * {
     margin: 0;
     padding: 0;
     font-family: Poppins;
+}
+
+#root {
+    min-height: 100vh;
 }

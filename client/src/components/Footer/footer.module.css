@@ -1,0 +1,30 @@
+.wrapper {
+    background-color: greenyellow;
+    padding: 30px;
+    text-align: center;
+}
+
+.content {
+    font-size: 14px;
+    color: var(--blue);
+    line-height: 24px;
+}
+
+.brandWrapper {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    justify-content: center;
+    align-items: center;
+    margin-top: 30px;
+}
+
+.logo {
+    width: 110px;
+}
+
+.githubButton {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+}
