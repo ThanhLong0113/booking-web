@@ -1,0 +1,113 @@
+.destinationWrapper {
+    height: calc(100vh - 60px);
+    position: relative;
+}
+
+.image {
+    width: 100%;
+    height: 100%;
+    filter: brightness(50%);
+}
+
+.info {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    margin: auto;
+    text-align: center;
+    width: 1200px;
+}
+
+.name {
+    color: white;
+}
+
+.hotelsQuantity {
+    color: white;
+    margin-bottom: 30px;
+}
+
+.description {
+    color: white;
+    font-weight: 500;
+}
+
+.hotelsWrapper {
+    padding: 30px;
+    width: 1200px;
+    margin: auto;
+}
+
+.gridHotels {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    margin-top: 30px;
+}
+
+.gridItem {
+    display: flex;
+    flex-direction: row;
+    padding: 15px;
+    border: 1px solid var(--blue);
+    border-radius: 15px;
+    gap: 15px;
+}
+
+.imageButton {
+    background-color: white;
+    border: none;
+    cursor: pointer;
+}
+
+.gridImage {
+    width: 400px;
+    height: 300px;
+    border-radius: 15px;
+}
+
+.gridDetails {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.detailsWrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.gridName {
+    font-size: 22px;
+    background-color: white;
+    border: none;
+    text-align: left;
+    cursor: pointer;
+}
+
+.gridName:hover {
+    text-decoration-line: underline;
+}
+
+.gridAddress {
+    color: var(--blue);
+}
+
+.gridButton {
+    background-color: var(--blue);
+    border: none;
+    font-size: 14px;
+    font-weight: 700;
+    color: white;
+    padding: 1rem 1.5rem;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: background-color 500ms;
+    width: max-content;
+}
+
+.gridButton:hover {
+    background-color: rgba(0, 108, 228, 0.7);
+}

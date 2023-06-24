@@ -45,7 +45,7 @@ const HotelTab = ({ allDestinations }) => {
                 {allDestinations.slice(0, 5).map((element, index) => {
                     return (
                         <button className={tabFocus === index ? hotelTab.tabButtonFocus : hotelTab.tabButton}
-                        onClick={() => handleTabSelect(index, element.name)}>{element.name}</button>
+                        onClick={() => handleTabSelect(index, element.name)} key={index}>{element.name}</button>
                     )
                 })}
             </div>
@@ -53,7 +53,7 @@ const HotelTab = ({ allDestinations }) => {
                 {isLoading ? (<SyncLoader size={12} color='#006ce4' speedMultiplier={1.5}/>) : 
                 (hotelsByCity.map((element, index) => {
                     return (
-                        <div className={hotelTab.gridItem}>
+                        <div className={hotelTab.gridItem} key={index}>
                             <img src={element.image} alt='' className={hotelTab.gridImage}></img>
                             <h1 className={hotelTab.gridName}>{element.name}</h1>
                             <p className={hotelTab.gridAddress}>{element.address}</p>

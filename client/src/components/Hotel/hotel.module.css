@@ -1,0 +1,40 @@
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: auto;
+    padding: 30px;
+}
+
+.imageWrapper {
+    margin: auto;
+}
+
+.image {
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+}
+
+.details {
+    width: 1000px;
+    margin: 30px auto;
+    padding: 15px;
+    border-radius: 15px;
+    border: 1px solid var(--blue)
+}
+
+.address {
+    padding: 5px 0;
+    border-bottom: 1px solid var(--gray);
+}
+
+.description {
+    padding: 5px 0;
+    color: var(--gray)
+}
+
+.roomWrapper {
+    width: 1000px;
+    margin: 30px auto;
+}
