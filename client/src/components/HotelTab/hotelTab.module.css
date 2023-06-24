@@ -35,3 +35,43 @@
     transition: border-bottom 300ms, color 300ms;
     cursor: pointer;
 }
+
+.loadingHotels {
+    width: 1200px;
+    padding: 30px;
+    margin: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.gridHotels {
+    width: 1230px;
+    padding: 30px;
+    margin: auto;
+    display: grid;
+    column-gap: 10px;
+    row-gap: 30px;
+    grid-template-columns: repeat(4, 1fr);
+}
+
+.gridItem {
+    width: 300px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.gridImage {
+    width: 300px;
+    height: 200px;
+}
+
+.gridName {
+    font-size: 14px;
+}
+
+.gridAddress {
+    font-size: 14px;
+    color: var(--blue);
+}

@@ -3,7 +3,7 @@ import Header from '../Header'
 import Footer from "../Footer";
 import DestinationSlider from "../DestinationSlider/";
 import HotelTab from "../HotelTab/hotelTab";
-import LoadingSpinner from "../LoadingSpinner"
+import LoadingClip from "../LoadingClip"
 import { useAllDestinations } from "../../talons/useAllDestinations";
 
 const HomePage = () => {
@@ -13,7 +13,7 @@ const HomePage = () => {
         allDestinations
     } = getAllDestinations
 
-    if(isLoadingAllDestinations) return <LoadingSpinner/>
+    if(isLoadingAllDestinations) return <LoadingClip/>
 
     return (
         <div>

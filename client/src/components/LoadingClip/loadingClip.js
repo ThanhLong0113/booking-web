@@ -1,13 +1,13 @@
 import React from "react";
 import { ClipLoader } from "react-spinners";
-import loadingSpinner from "./loadingSpinner.module.css";
+import loadingClip from "./loadingClip.module.css";
 
-const LoadingSpinner = () => {
+const LoadingClip = () => {
     return (
-        <div className={loadingSpinner.container}>
+        <div className={loadingClip.container}>
             <ClipLoader color='#006ce4' speedMultiplier={1} />
         </div>
     )
 }
 
-export default LoadingSpinner
+export default LoadingClip

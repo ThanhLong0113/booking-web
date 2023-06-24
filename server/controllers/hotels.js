@@ -10,10 +10,10 @@ exports.createHotel = async (req, res) => {
     }
 }
 
-exports.findAllHotels = async (req, res) => {
+exports.findHotelsByCity = async (req, res) => {
     try {
-        const allHotels = await HotelModel.find()
-        return res.status(200).json({ allHotels: allHotels })
+        const hotelsByCity = await HotelModel.find({ city_name: req.query.city_name })
+        return res.status(200).json({ hotelsByCity })
     }
     catch (err) {
         res.status(500).json({ error: err.message })
@@ -22,8 +22,8 @@ exports.findAllHotels = async (req, res) => {
 
 exports.findHotelById = async (req, res) => {
     try {
-        const existedHotel = await HotelModel.findOne({ _id: req.params.id })
-        return res.status(200).json({ existedHotel: existedHotel })
+        const hotelById = await HotelModel.findOne({ _id: req.params.id })
+        return res.status(200).json({ hotelById: hotelById })
     }
     catch (err) {
         res.status(500).json({ error: err.message })
