@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useNavigate } from 'react-router-dom'
 import hotelTab from './hotelTab.module.css'
 import axios from "axios";
 import { SyncLoader } from "react-spinners";
@@ -7,6 +8,7 @@ const HotelTab = ({ allDestinations }) => {
     const [tabFocus, setTabFocus] = useState(0)
     const [isLoading, setIsLoading] = useState(true)
     const [hotelsByCity, setHotelsByCity] = useState([])
+    const navigate = useNavigate()
 
     async function loadHotelsByCity(city_name) {
         try {
@@ -45,21 +47,27 @@ const HotelTab = ({ allDestinations }) => {
                 {allDestinations.slice(0, 5).map((element, index) => {
                     return (
                         <button className={tabFocus === index ? hotelTab.tabButtonFocus : hotelTab.tabButton}
-                        onClick={() => handleTabSelect(index, element.name)} key={index}>{element.name}</button>
+                            onClick={() => handleTabSelect(index, element.name)} key={index}>{element.name}</button>
                     )
                 })}
             </div>
             <div className={isLoading ? hotelTab.loadingHotels : hotelTab.gridHotels}>
-                {isLoading ? (<SyncLoader size={12} color='#006ce4' speedMultiplier={1.5}/>) : 
-                (hotelsByCity.map((element, index) => {
-                    return (
-                        <div className={hotelTab.gridItem} key={index}>
-                            <img src={element.image} alt='' className={hotelTab.gridImage}></img>
-                            <h1 className={hotelTab.gridName}>{element.name}</h1>
-                            <p className={hotelTab.gridAddress}>{element.address}</p>
-                        </div>
-                    )
-                }))}
+                {isLoading ? (<SyncLoader size={12} color='#006ce4' speedMultiplier={1.5} />) :
+                    (hotelsByCity.map((element, index) => {
+                        return (
+                            <div className={hotelTab.gridItem} key={index}>
+                                <button className={hotelTab.imageButton} onClick={() => navigate(`hotel/${element._id}`, {
+                                    state: element
+                                })}>
+                                    <img src={element.image} alt='' className={hotelTab.gridImage}></img>
+                                </button>
+                                <button className={hotelTab.nameButton}>
+                                    <h1 className={hotelTab.gridName}>{element.name}</h1>
+                                </button>
+                                <p className={hotelTab.gridAddress}>{element.address}</p>
+                            </div>
+                        )
+                    }))}
             </div>
         </div>
     )

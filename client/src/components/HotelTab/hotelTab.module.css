@@ -62,13 +62,30 @@
     gap: 8px;
 }
 
+.imageButton {
+    background-color: white;
+    border: none;
+    cursor: pointer;
+}
+
 .gridImage {
     width: 300px;
     height: 200px;
 }
 
+.nameButton {
+    background-color: white;
+    border: none;
+    text-align: left;
+    cursor: pointer;
+}
+
 .gridName {
     font-size: 14px;
+}
+
+.gridName:hover {
+    text-decoration-line: underline;
 }
 
 .gridAddress {
