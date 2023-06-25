@@ -22,10 +22,10 @@ exports.findAllRooms = async (req, res) => {
     }
 }
 
-exports.findRoomById = async (req, res) => {
+exports.findRoomsByHotel = async (req, res) => {
     try {
-        const existedRoom = await RoomModel.findOne({ _id: req.params.id })
-        return res.status(200).json({ existedRoom: existedRoom })
+        const roomsByHotel = await RoomModel.find({ hotel_id: req.params.id })
+        return res.status(200).json({ roomsByHotel: roomsByHotel })
     }
     catch (err) {
         res.status(500).json({ error: err.message })

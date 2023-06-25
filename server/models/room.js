@@ -10,7 +10,11 @@ const roomSchema = new Schema({
         type: String,
         required: true
     },
-    bed: [{
+    image: {
+        type: String,
+        required: true
+    },
+    beds: [{
         bedType: {
           type: Number,
           required: true
@@ -36,11 +40,21 @@ const roomSchema = new Schema({
         type: [String],
         required: true
     },
+    sleeps: {
+        adults: {
+            type: Number,
+            required: true
+        },
+        kids: {
+            type: Number,
+            default: 0
+        }
+    },
     price_per_night: {
         type: Number,
         required: true
     },
-    quantity: {
+    roomsLeft: {
         type: Number,
         required: true
     }

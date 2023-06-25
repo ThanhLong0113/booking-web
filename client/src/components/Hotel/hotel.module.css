@@ -16,6 +16,10 @@
     border-radius: 50%;
 }
 
+.name {
+    font-size: 28px;
+}
+
 .details {
     width: 1000px;
     margin: 30px auto;
@@ -35,6 +39,187 @@
 }
 
 .roomWrapper {
-    width: 1000px;
-    margin: 30px auto;
+    width: 1030px;
+    margin: 0 auto 30px;
+}
+
+.roomTitle {
+    font-size: 28px;
+    padding-bottom: 5px;
+    border-bottom: 1px solid var(--gray);
+}
+
+.gridRoom {
+    margin-top: 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.gridItem {
+    padding: 15px;
+    border: 1px solid var(--blue);
+    border-radius: 15px;
+}
+
+.roomName {
+    margin-bottom: 15px;
+    font-size: 22px;
+}
+
+.roomDetails {
+    display: grid;
+    grid-template-areas: "descriptions benefits sleeps prices";
+    grid-template-columns: 1fr auto auto auto;
+}
+
+.roomBlockTitle {
+    background-color: var(--gray);
+    color: white;
+    padding: 10px;
+    text-align: center;
+}
+
+.roomDescriptions {
+    grid-area: descriptions;
+    border-right: 1px solid var(--gray);
+    border-left: 1px solid var(--gray);
+    padding-bottom: 15px;
+    border-bottom: 1px solid var(--gray);
+}
+
+.roomBenefits {
+    grid-area: benefits;
+    border-right: 1px solid var(--gray);
+    border-bottom: 1px solid var(--gray);
+}
+
+.roomSleeps {
+    grid-area: sleeps;
+    border-right: 1px solid var(--gray);
+    border-bottom: 1px solid var(--gray);
+}
+
+.roomPrices {
+    grid-area: prices;
+    border-right: 1px solid var(--gray);
+    border-bottom: 1px solid var(--gray);
+}
+
+.roomImage {
+    width: calc(100% - 30px);
+    padding: 15px 0;
+    border-bottom: 1px solid var(--gray);
+    margin-left: 15px;
+}
+
+.roomBedTitle {
+    width: calc(100% - 30px);
+    margin-left: 15px;
+    margin-top: 3px;
+}
+
+.roomBed {
+    width: calc(100% - 30px);
+    padding-top: 5px;
+    margin-left: 15px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+}
+
+.bedTitle {
+    font-size: 14px;
+    color: var(--gray);
+}
+
+.roomFacilityTitle {
+    width: calc(100% - 30px);
+    margin-left: 15px;
+    margin-top: 12px;
+    padding-top: 10px;
+    border-top: 1px solid var(--gray);
+}
+
+.roomFacility {
+    width: calc(100% - 30px);
+    padding-top: 5px;
+    margin-left: 15px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+}
+
+.facilityTitle {
+    font-size: 14px;
+    color: var(--gray);
+}
+
+.benefitsWrapper {
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.roomBenefit {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+}
+
+.benefitTitle {
+    color: black;
+    font-size: 14px;
+}
+
+.sleepsWrapper {
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.roomSleep {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    align-items: center;
+}
+
+.sleepTitle {
+    color: black;
+    font-size: 14px;
+}
+
+.pricesWrapper {
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.totalPrice {
+    text-align: center;
+    color: var(--blue);
+}
+
+.cartButton {
+    background-color: var(--blue);
+    border: none;
+    font-size: 14px;
+    font-weight: 700;
+    color: white;
+    padding: 0.8rem 1.5rem;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: background-color 500ms;
+    width: max-content;
+}
+
+.cartButton:hover {
+    background-color: rgba(0, 108, 228, 0.7);
 }

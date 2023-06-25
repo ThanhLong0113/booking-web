@@ -1,0 +1,124 @@
+.portal {
+    position: fixed;
+    top: 0;
+    z-index: 2;
+    height: 100vh;
+    background-color: rgba(45, 45, 45, 0.7) !important;
+}
+
+.overlay {
+    opacity: 0;
+    transform: translateY(-50%);
+    transition: all 500ms ease-in-out;
+}
+
+.overlayAfterOpen {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.overlayBeforeClose {
+    opacity: 0;
+    transform: translateY(-50%);
+}
+
+.content {
+    width: 100vw;
+}
+
+.wrapper {
+    background-color: var(--blue);
+    width: max-content;
+    height: max-content;
+    padding: 15px;
+    border-radius: 30px;
+    margin: auto;
+    margin-top: calc(50vh - 325px);
+    position: relative;
+}
+
+.closeButton {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    margin-left: 30px;
+    display: flex;
+    align-items: center;
+}
+
+.inputWrapper {
+    display: flex;
+    flex-direction: row;
+}
+
+.checkInPicker {
+    width: 222px;
+    border: none;
+    border-radius: 20px;
+    height: 36px;
+    padding-left: 20px;
+    outline: none;
+    margin-right: 30px;
+    cursor: pointer;
+    text-align: left;
+}
+
+.checkOutPicker {
+    width: 222px;
+    border: none;
+    border-radius: 20px;
+    height: 36px;
+    padding-left: 20px;
+    outline: none;
+    cursor: pointer;
+    text-align: left;
+}
+
+.quantityWrapper {
+    display: flex;
+    flex-direction: row;
+    margin-left: 30px;
+    justify-content: center;
+    align-items: center;
+}
+
+.plusButton {
+    display: flex;
+    align-items: center;
+    background-color: transparent;
+    border: none;
+    margin-right: 15px;
+    cursor: pointer;
+}
+
+.quantityText {
+    width: 20px;
+    text-align: center;
+    color: white;
+}
+
+.minusButton {
+    display: flex;
+    align-items: center;
+    background-color: transparent;
+    border: none;
+    margin-left: 15px;
+    cursor: pointer;
+}
+
+.addCartButton {
+    background-color: white;
+    border: none;
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--blue);
+    padding: 0.5rem 1.5rem;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: background-color 500ms;
+    margin-left: 30px;
+}
+
+.addCartButton:hover {
+    background-color: rgba(255, 255, 255, 0.7);
+}
