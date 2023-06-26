@@ -51,7 +51,7 @@ const Cart = () => {
     async function createBooking() {
         setIsLoadingCheckout(true)
         try {
-            await axios.post('http://localhost:5000/bookings', {
+            const res = await axios.post('http://localhost:5000/bookings', {
                 customer_id: customer_id,
                 items: itemsSelected,
                 totalPrice: totalPrice
@@ -59,7 +59,9 @@ const Cart = () => {
 
             await axios.put(`http://localhost:5000/carts/remove/${cart_id}`, remainingItems);
             setIsLoadingCheckout(false)
-            navigate('/checkout-success')
+            navigate('/checkout-success', {
+                state: res.data.newBooking._id
+            })
         } catch (err) {
             setIsLoadingCheckout(false)
         }
@@ -78,8 +80,8 @@ const Cart = () => {
             <Header />
             {cartById.items.length === 0 ? (<div className={cart.noItemWrapper}>
                 <img src={NoItemInCart} alt='' className={cart.noItemImage}></img>
-                <h2 className={cart.noItemTitle}>Look like there is nothing here yet</h2>
-                <p className={cart.noItemText}>Add an item to your cart to get started!</p>
+                <h2 className={cart.noItemTitle}>Có vẻ như không có đơn hàng nào trong giỏ của bạn!</h2>
+                <button className={cart.backButton} onClick={() => navigate('/')}>Trở lại màn hình chính</button>
             </div>) : (<div className={cart.wrapper}>
                 <h2>{`Your Cart (${cartById.items.length})`}</h2>
                 <div className={cart.contentWrapper}>

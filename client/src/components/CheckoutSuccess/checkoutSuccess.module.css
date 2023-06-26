@@ -1,0 +1,35 @@
+.wrapper {
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: calc(100vh - 320.75px)
+}
+
+.title {
+    margin-top: 5px;
+}
+
+.subTitle {
+    margin-top: 50px;
+    color: var(--gray);
+}
+
+.backButton {
+    background-color: var(--blue);
+    border: none;
+    font-size: 14px;
+    font-weight: 700;
+    color: white;
+    padding: 1rem 1.5rem;
+    margin-top: 10px;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: background-color 500ms;
+    width: max-content;
+}
+
+.backButton:hover {
+    background-color: rgba(0, 108, 228, 0.7);
+}

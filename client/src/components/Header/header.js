@@ -63,6 +63,10 @@ const Header = () => {
                                         <BsCircleFill size={14}/>
                                         <p>Tài khoản của tôi</p>
                                     </button>
+                                    <button className={header.dropdownButton} onClick={() => navigate(`/booking/${isSignedIn}`)}>
+                                        <BsCircleFill size={14}/>
+                                        <p>Đơn hàng của tôi</p>
+                                    </button>
                                     <button className={header.dropdownButton} onClick={handleLogOut}>
                                         <BsCircleFill size={14}/>
                                         <p>Đăng xuất</p>

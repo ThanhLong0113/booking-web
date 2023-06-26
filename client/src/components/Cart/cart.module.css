@@ -138,3 +138,21 @@
 .checkoutButton:hover {
     background-color: rgba(0, 108, 228, 0.7);
 }
+
+.backButton {
+    background-color: var(--blue);
+    border: none;
+    font-size: 14px;
+    font-weight: 700;
+    color: white;
+    padding: 1rem 1.5rem;
+    margin-top: 20px;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: background-color 500ms;
+    width: max-content;
+}
+
+.backButton:hover {
+    background-color: rgba(0, 108, 228, 0.7);
+}

@@ -12,7 +12,7 @@ exports.createBooking = async (req, res) => {
 
 exports.findBookingsByCustomer = async (req, res) => {
     try {
-        const bookingsByCustomer = await BookingModel.findOne({ customer_id: req.params.id })
+        const bookingsByCustomer = await BookingModel.find({ customer_id: req.params.id })
         return res.status(200).json({ bookingsByCustomer: bookingsByCustomer })
     }
     catch (err) {

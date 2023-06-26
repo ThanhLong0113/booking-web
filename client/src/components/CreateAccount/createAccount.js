@@ -73,7 +73,7 @@ const CreateAccount = () => {
                     </div>
                     <div>
                         <p className={createAccount.formInputLabel}>Password</p>
-                        <input placeholder="Password" onChange={(e) => setPassword(e.target.value)}></input>
+                        <input placeholder="Password" onChange={(e) => setPassword(e.target.value)} type="password"></input>
                     </div>
                     {error?.length > 0 && <p className={createAccount.formError}>{error}</p>}
                     <button onClick={handleSubmit}>Sign Up</button>

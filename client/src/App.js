@@ -6,6 +6,7 @@ import Destination from "./components/Destination";
 import Hotel from "./components/Hotel";
 import Cart from "./components/Cart";
 import Booking from "./components/Booking";
+import CheckoutSuccess from "./components/CheckoutSuccess";
 import './app.css'
 
 const App = () => {
@@ -18,6 +19,7 @@ const App = () => {
       <Route exact path='/hotel/:id' element={<Hotel/>}></Route>
       <Route exact path='/cart/:id' element={<Cart/>}></Route>
       <Route exact path='/booking/:id' element={<Booking/>}></Route>
+      <Route path='/checkout-success' element={<CheckoutSuccess/>}></Route>
     </Routes>
   );
 }

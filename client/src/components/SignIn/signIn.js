@@ -50,7 +50,7 @@ const SignIn = () => {
                     </div>
                     <div>
                         <p className={signIn.formInputLabel}>Password</p>
-                        <input placeholder="Password" onChange={(e) => setPassword(e.target.value)}></input>
+                        <input placeholder="Password" onChange={(e) => setPassword(e.target.value)} type="password"></input>
                     </div>
                     {error?.length > 0 && (<p className={signIn.formError}>{error}</p>)}
                     <button onClick={handleSubmit}>Sign in</button>
