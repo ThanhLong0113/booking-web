@@ -61,7 +61,9 @@ const HotelTab = ({ allDestinations }) => {
                                 })}>
                                     <img src={element.image} alt='' className={hotelTab.gridImage}></img>
                                 </button>
-                                <button className={hotelTab.nameButton}>
+                                <button className={hotelTab.nameButton} onClick={() => navigate(`hotel/${element._id}`, {
+                                    state: element
+                                })}>
                                     <h1 className={hotelTab.gridName}>{element.name}</h1>
                                 </button>
                                 <p className={hotelTab.gridAddress}>{element.address}</p>

@@ -4,6 +4,7 @@ import Header from "../Header";
 import createAccount from './createAccount.module.css'
 import CreateAccountImage from '../../assets/images/create_account_image.jpg'
 import axios from "axios";
+import LoadingClip from "../LoadingClip/loadingClip";
 
 const CreateAccount = () => {
     const [firstName, setFirstName] = useState()
@@ -11,21 +12,31 @@ const CreateAccount = () => {
     const [email, setEmail] = useState()
     const [password, setPassword] = useState()
     const [error, setError] = useState()
+    const [isLoading, setIsLoading] = useState(false)
 
     const navigate = useNavigate()
 
     async function createUser() {
+        setIsLoading(true)
         try {
-            const res = await axios.post('http://localhost:5000/users', {
+            const createUser = await axios.post('http://localhost:5000/users', {
                 first_name: firstName,
                 last_name: lastName,
                 email: email,
                 password: password
             });
 
-            localStorage.setItem('token', res.data.newUser._id);
+            const cart_id = createUser.data.newUser.cart_id
+            await axios.post('http://localhost:5000/carts', {
+                cart_id: cart_id
+            })
+
+            localStorage.setItem('token', createUser.data.newUser._id);
+            localStorage.setItem('cart_id', cart_id)
+            setIsLoading(false)
             navigate('/')
         } catch (err) {
+            setIsLoading(false)
             setError(err.response.data.error)
         }
     }
@@ -33,6 +44,8 @@ const CreateAccount = () => {
     const handleSubmit = () => {
         createUser()
     }
+
+    if(isLoading) return <LoadingClip/>
 
     return (
         <>

@@ -21,6 +21,7 @@ const SignIn = () => {
             });
 
             localStorage.setItem('token', res.data.existedUser._id);
+            localStorage.setItem('cart_id', res.data.existedUser.cart_id);
             navigate('/')
         } catch (err) {
             setError(err.response.data.error)

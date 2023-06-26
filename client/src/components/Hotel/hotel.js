@@ -10,12 +10,18 @@ import { FaBaby } from "react-icons/fa";
 import { BsPersonFill } from "react-icons/bs";
 import { MdConstruction } from 'react-icons/md'
 import CartModal from "../CartModal";
+import AddCartMessage from "../AddCartMessage";
 import hotel from './hotel.module.css'
 
 const Hotel = () => {
     const location = useLocation();
     const hotelData = location.state;
     const [isOpen, setIsOpen] = useState(false)
+    const [showModal, setShowModal] = useState(false)
+    const [isOpenMsg, setIsOpenMsg] = useState(false)
+    const [showModalMsg, setShowModalMsg] = useState(false)
+    const [roomChoose, setRoomChoose] = useState()
+    const [msgContent, setMsgContent] = useState()
 
     const getRoomsByHotel = useRoomsByHotel(hotelData._id)
     const {
@@ -23,7 +29,9 @@ const Hotel = () => {
         roomsByHotel
     } = getRoomsByHotel
 
-    const handleAddCart = () => {
+    const handleAddCart = (element) => {
+        setRoomChoose(element)
+        setShowModal(true)
         setIsOpen(true)
     }
 
@@ -105,7 +113,7 @@ const Hotel = () => {
                                             <h5 className={hotel.roomBlockTitle}>Giá phòng 1 đêm</h5>
                                             <div className={hotel.pricesWrapper}>
                                                 <h3 className={hotel.totalPrice}>{`${element.price_per_night.toLocaleString()} VNĐ`}</h3>
-                                                <button className={hotel.cartButton} onClick={handleAddCart}>Add to Cart</button>
+                                                <button className={hotel.cartButton} onClick={() => handleAddCart(element)}>Add to Cart</button>
                                             </div>
                                         </div>
                                     </div>
@@ -116,7 +124,12 @@ const Hotel = () => {
                 </div>
             </div>
             <Footer/>
-            <CartModal isOpen={isOpen} setIsOpen={setIsOpen}/>
+            {showModal && (<CartModal isOpen={isOpen} setIsOpen={setIsOpen} setShowModal={setShowModal} setMsgContent={setMsgContent}
+                hotelData={hotelData} roomChoose={roomChoose} setIsOpenMsg={setIsOpenMsg} setShowModalMsg={setShowModalMsg}
+            />)}
+            {showModalMsg && (<AddCartMessage isOpenMsg={isOpenMsg} setIsOpenMsg={setIsOpenMsg} setShowModalMsg={setShowModalMsg}
+                msgContent={msgContent}
+            />)}
         </div>
     )
 }

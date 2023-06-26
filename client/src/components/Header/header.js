@@ -53,8 +53,7 @@ const Header = () => {
             <div className={header.rightWrapper}>
                 {isSignedIn ?
                     (<div className={header.userWrapper}>
-                        <button className={header.userButton} onMouseEnter={handleDropdownToggle} onMouseLeave={handleDropdownToggle}
-                        onClick={handleLogOut}>
+                        <button className={header.userButton} onMouseEnter={handleDropdownToggle} onMouseLeave={handleDropdownToggle}>
                             <FaUser size={18} />
                             {userName && (<p>{`Hi, ${userName}`}</p>)}
                             {isDropdown && (
@@ -63,7 +62,7 @@ const Header = () => {
                                         <BsCircleFill size={14}/>
                                         <p>Tài khoản của tôi</p>
                                     </button>
-                                    <button className={header.dropdownButton}>
+                                    <button className={header.dropdownButton} onClick={handleLogOut}>
                                         <BsCircleFill size={14}/>
                                         <p>Đăng xuất</p>
                                     </button>
