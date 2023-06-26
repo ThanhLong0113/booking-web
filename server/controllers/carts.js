@@ -12,15 +12,15 @@ exports.createCart = async (req, res) => {
 
 exports.findCartById = async (req, res) => {
     try {
-        const existedCart = await CartModel.findOne({ cart_id: req.params.id })
-        return res.status(200).json({ existedCart: existedCart })
+        const cartById = await CartModel.findOne({ cart_id: req.params.id })
+        return res.status(200).json({ cartById: cartById })
     }
     catch (err) {
         res.status(500).json({ error: err.message })
     }
 }
 
-exports.updateCart = async (req, res) => {
+exports.addToCart = async (req, res) => {
     try {
         const existedCart = await CartModel.findOne({ cart_id: req.params.id })
         const items = existedCart.items
@@ -34,11 +34,14 @@ exports.updateCart = async (req, res) => {
     }
 }
 
-/*exports.deleteUser = async (req, res) => {
-  try {
-    const deleteUser = await UserModel.findOneAndDelete(req.params.id)
-    res.json({ deleteUser: deleteUser, status: "success" })
-  } catch (err) {
-    res.status(500).json({ error: err.message })
-  }
-}*/
+exports.removeFromCart = async (req, res) => {
+    try {
+        const existedCart = await CartModel.findOne({ cart_id: req.params.id })
+        existedCart.items = req.body
+        const updatedCart = await existedCart.save()
+        res.json({ updatedCart: updatedCart, status: "success" })
+    } 
+    catch (err) {
+        res.status(500).json({ error: err.message })
+    }
+}

@@ -49,7 +49,7 @@ const CartModal = ({ isOpen, setIsOpen, setShowModal, hotelData, roomChoose, set
                 totalPrice: roomChoose.price_per_night * quantity * diffInDays
             }
 
-            await axios.put(`http://localhost:5000/carts/${cart_id}`, item);
+            await axios.put(`http://localhost:5000/carts/add/${cart_id}`, item);
 
             setIsLoading(false)
             setIsOpen(false)

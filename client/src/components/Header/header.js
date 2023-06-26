@@ -9,6 +9,7 @@ import axios from 'axios'
 const Header = () => {
     const navigate = useNavigate()
     const isSignedIn = localStorage.getItem('token')
+    const cart_id = localStorage.getItem('cart_id')
     const [userName, setUserName] = useState()
     const [isDropdown, setIsDropdown] = useState(false)
 
@@ -70,7 +71,7 @@ const Header = () => {
                             )}
                         </button>
 
-                        <button className={header.userButton}>
+                        <button className={header.userButton} onClick={() => navigate(`/cart/${cart_id}`)}>
                             <BsCartFill size={18} />
                             <p>Cart</p>
                         </button>
