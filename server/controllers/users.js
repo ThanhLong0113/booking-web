@@ -28,8 +28,8 @@ exports.findUser = async (req, res) => {
 
 exports.findUserById = async (req, res) => {
     try {
-        const existedUser = await UserModel.findOne({ _id: req.params.id })
-        return res.status(200).json({ existedUser: existedUser })
+        const userById = await UserModel.findOne({ _id: req.params.id })
+        return res.status(200).json({ userById: userById })
     }
     catch (err) {
         res.status(500).json({ error: err.message })

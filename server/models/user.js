@@ -28,35 +28,31 @@ const userSchema = new Schema({
     },
     phone_number: {
         type: String,
-        default: ''
+        default: null
     },
     birth_day: {
         type: Date,
-        default: Date.now
-    },
-    account_name: {
-        type: String,
-        default: 'Your account'
+        default: null
     },
     nationality: {
         type: String,
-        default: ''
+        default: null
     },
     gender: {
-        type: String,
+        type: Number,
         default: -1
     },
     address: {
         type: String,
-        default: ''
+        default: null
     },
     city: {
         type: String,
-        default: ''
+        default: null
     },
     country: {
         type: String,
-        default: ''
+        default: null
     }
 })
 

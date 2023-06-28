@@ -1,0 +1,118 @@
+.wrapper {
+    width: 100%;
+}
+
+.infoLoading {
+    display: flex;
+    justify-content: center;
+    margin-top: 50px;
+}
+
+.title {
+    margin-bottom: 15px;
+    grid-area: menu;
+    text-align: left;
+}
+
+.infoWrapper {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.infoItem {
+    padding: 15px 15px;
+    border-top: 1px solid var(--gray);
+    width: 100%;
+    display: grid;
+    grid-template-areas: 'name content button';
+    grid-template-columns: auto 1fr auto;
+    gap: 15px;
+    justify-content: center;
+    align-items: center;
+}
+
+.itemName {
+    grid-area: name;
+    width: 100px;    
+}
+
+.itemContent {
+    grid-area: content;
+}
+
+.itemContent p {
+    color: var(--gray)
+}
+
+.itemButton {
+    grid-area: button;
+}
+
+.buttonWrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.editButton {
+    padding: 5px 20px;
+    background-color: var(--blue);
+    border: none;
+    color: white;
+    font-weight: bold;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: background-color 300ms;
+}
+
+.editButton:hover {
+    background-color: rgba(0, 108, 228, 0.7);
+}
+
+.cancelButton {
+    padding: 5px 20px;
+    background-color: var(--gray);
+    border: none;
+    color: white;
+    font-weight: bold;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: background-color 300ms;
+}
+
+.cancelButton:hover {
+    background-color: rgba(118, 118, 118, 0.7);
+}
+
+.saveButton {
+    padding: 5px 20px;
+    background-color: var(--blue);
+    border: none;
+    color: white;
+    font-weight: bold;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: background-color 300ms;
+}
+
+.saveButton:hover {
+    background-color: rgba(0, 108, 228, 0.7);
+}
+
+.inputWrapper {
+    display: flex;
+    flex-direction: row;
+    gap: 15px
+}
+
+.inputWrapper input {
+    border: 1px solid var(--gray);
+    padding: 10px 15px;
+    border-radius: 20px;
+    outline: none;
+}
+
+.inputWrapper input:focus {
+    border: 1px solid var(--blue);
+}

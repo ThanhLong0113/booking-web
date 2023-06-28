@@ -9,6 +9,7 @@ import Booking from "./components/Booking";
 import CheckoutSuccess from "./components/CheckoutSuccess";
 import HotelList from "./components/HotelList";
 import DestinationList from "./components/DestinationList";
+import MyAccount from "./components/MyAccount"
 import './app.css'
 
 const App = () => {
@@ -24,6 +25,7 @@ const App = () => {
       <Route path='/checkout-success' element={<CheckoutSuccess/>}></Route>
       <Route path='/hotels' element={<HotelList/>}></Route>
       <Route path='/destinations' element={<DestinationList/>}></Route>
+      <Route path='/my-account' element={<MyAccount/>}></Route>
     </Routes>
   );
 }

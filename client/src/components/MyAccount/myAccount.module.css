@@ -1,0 +1,20 @@
+.wrapper {
+    gap: 15px;
+    width: 1200px;
+    padding: 30px;
+    margin: auto;
+    display: grid;
+    grid-template-areas: 'menu body';
+    grid-template-columns: auto 1fr;
+}
+
+.leftMenu {
+    width: 300px;
+    border: 1px solid var(--blue);
+    height: 300px;
+    grid-area: menu;
+}
+
+.body {
+    grid-area: body;
+}

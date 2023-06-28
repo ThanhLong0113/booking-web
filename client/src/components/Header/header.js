@@ -16,7 +16,7 @@ const Header = () => {
     const getUserData = useCallback(async function getUserData() {
         try {
             const res = await axios.get(`http://localhost:5000/users/${isSignedIn}`);
-            setUserName(res.data.existedUser.last_name)
+            setUserName(res.data.userById.last_name)
         } catch (err) {
             console.log(err)
         }
