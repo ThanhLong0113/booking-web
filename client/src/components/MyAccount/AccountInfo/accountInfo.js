@@ -1,6 +1,8 @@
 import React, { useState} from "react";
+import axios from 'axios'
 import { SyncLoader } from 'react-spinners'
 import { useUserById } from "../../../talons/useUserById";
+import { countries } from '../../../constants/countries'
 import DatePicker from 'react-datepicker'
 import "react-datepicker/dist/react-datepicker.css";
 import accountInfo from './accountInfo.module.css'
@@ -10,7 +12,8 @@ const AccountInfo = () => {
     const getUserById = useUserById(id)
     const {
         isLoading,
-        userById
+        userById,
+        setIsLoading
     } = getUserById
     const [birthDay, setBirthDay] = useState(new Date())
 
@@ -21,6 +24,28 @@ const AccountInfo = () => {
     const [nationalityEdit, setNationalityEdit] = useState(false)
     const [genderEdit, setGenderEdit] = useState(false)
     const [addressEdit, setAddressEdit] = useState(false)
+
+    const [firstName, setFirstName] = useState()
+    const [lastName, setLastName] = useState()
+    const [email, setEmail] = useState()
+    const [phone, setPhone] = useState()
+
+    async function updateUser(field, value) {
+        setIsLoading(true)
+        try {
+            await axios.put(`http://localhost:5000/users/${id}`, {
+                field: field,
+                value: value
+            });
+            setIsLoading(false)
+        } catch (err) {
+           setIsLoading(false)
+        }
+    }
+
+    const handleUpdateUser = (field, value) => {
+        updateUser(field, value)
+    }
 
     if (isLoading) return (
         <div className={accountInfo.wrapper}>
@@ -48,15 +73,24 @@ const AccountInfo = () => {
                     <div className={accountInfo.itemContent}>
                         {!nameEdit ? (<p>{`${userById.first_name} ${userById.last_name}`}</p>)
                         : (<div className={accountInfo.inputWrapper}>
-                            <input placeholder="Họ"></input>
-                            <input placeholder="Tên"></input>
+                            <input placeholder="Họ" onChange={(e) => {
+                                setFirstName(e.target.value)
+                            }}></input>
+                            <input placeholder="Tên" onChange={(e) => {
+                                setLastName(e.target.value)
+                            }}></input>
                         </div>)}
                     </div>
                     <div className={accountInfo.itemButton}>
                         {!nameEdit ? (<button className={accountInfo.editButton} onClick={() => setNameEdit(true)}>Sửa</button>)
                         : (<div className={accountInfo.buttonWrapper}>
                           <button className={accountInfo.cancelButton} onClick={() => setNameEdit(false)}>Hủy</button>
-                          <button className={accountInfo.saveButton}>Lưu</button>
+                          <button className={accountInfo.saveButton} onClick={() => {
+                            const field = ['first_name', 'last_name']
+                            const value = [firstName, lastName]
+                            handleUpdateUser(field, value)
+                            setNameEdit(false)
+                          }}>Lưu</button>
                         </div>)}
                     </div>
                 </div>
@@ -68,14 +102,21 @@ const AccountInfo = () => {
                     <div className={accountInfo.itemContent}>
                     {!emailEdit ? (<p>{userById.email}</p>)
                         : (<div className={accountInfo.inputWrapper}>
-                            <input placeholder="Email"></input>
+                            <input placeholder="Email" onChange={(e) => {
+                                setEmail(e.target.value)
+                            }}></input>
                         </div>)}
                     </div>
                     <div className={accountInfo.itemButton}>
                     {!emailEdit ? (<button className={accountInfo.editButton} onClick={() => setEmailEdit(true)}>Sửa</button>)
                         : (<div className={accountInfo.buttonWrapper}>
                           <button className={accountInfo.cancelButton} onClick={() => setEmailEdit(false)}>Hủy</button>
-                          <button className={accountInfo.saveButton}>Lưu</button>
+                          <button className={accountInfo.saveButton} onClick={() => {
+                            const field = ['email']
+                            const value = [email]
+                            handleUpdateUser(field, value)
+                            setEmailEdit(false)
+                          }}>Lưu</button>
                         </div>)}
                     </div>
                 </div>
@@ -87,14 +128,21 @@ const AccountInfo = () => {
                     <div className={accountInfo.itemContent}>
                     {!phoneEdit ? (<p>{userById.phone_number ? userById.phone_number : 'Thêm số điện thoại của bạn'}</p>)
                         : (<div className={accountInfo.inputWrapper}>
-                            <input placeholder="Số điện thoại"></input>
+                            <input placeholder="Số điện thoại" onChange={(e) => {
+                                setPhone(e.target.value)
+                            }}></input>
                         </div>)}
                     </div>
                     <div className={accountInfo.itemButton}>
                     {!phoneEdit ? (<button className={accountInfo.editButton} onClick={() => setPhoneEdit(true)}>Sửa</button>)
                         : (<div className={accountInfo.buttonWrapper}>
                           <button className={accountInfo.cancelButton} onClick={() => setPhoneEdit(false)}>Hủy</button>
-                          <button className={accountInfo.saveButton}>Lưu</button>
+                          <button className={accountInfo.saveButton} onClick={() => {
+                            const field = ['phone_number']
+                            const value = [phone]
+                            handleUpdateUser(field, value)
+                            setPhoneEdit(false)
+                          }}>Lưu</button>
                         </div>)}
                     </div>
                 </div>
@@ -111,7 +159,6 @@ const AccountInfo = () => {
                             dateFormat="dd/MM/yyyy"
                             selected={birthDay}
                             onChange={date => setBirthDay(date)}
-                            minDate={new Date()}
                             showPopperArrow={false}
                             customInput={<button className={accountInfo.birthDayButton}>{birthDay ? birthDay.toLocaleDateString('vi-VI') : ''}</button>}
                         />
@@ -121,7 +168,13 @@ const AccountInfo = () => {
                     {!birthEdit ? (<button className={accountInfo.editButton} onClick={() => setBirthEdit(true)}>Sửa</button>)
                         : (<div className={accountInfo.buttonWrapper}>
                           <button className={accountInfo.cancelButton} onClick={() => setBirthEdit(false)}>Hủy</button>
-                          <button className={accountInfo.saveButton}>Lưu</button>
+                          <button className={accountInfo.saveButton} onClick={() => {
+                            console.log(birthDay.toLocaleDateString('vi-VI'))
+                            const field = ['birth_day']
+                            const value = [birthDay.toLocaleDateString('vi-VI')]
+                            handleUpdateUser(field, value)
+                            setBirthEdit(false)
+                          }}>Lưu</button>
                         </div>)}
                     </div>
                 </div>
@@ -131,7 +184,17 @@ const AccountInfo = () => {
                         <h4>Quốc tịch</h4>
                     </div>
                     <div className={accountInfo.itemContent}>
-                        <h3>Chọn quốc gia/vùng lãnh thổ của bạn</h3>
+                        {!nationalityEdit ? (<p>{userById.nationality ? userById.nationality : 'Chọn quốc gia/vùng lãnh thổ của bạn'}</p>)
+                        : <div className={accountInfo.selectWrapper}>
+                            <select className={accountInfo.selectNationality}>
+                                <option value='Quốc tịch'>Chọn quốc tịch của bạn</option>
+                                {countries.map((element, index) => {
+                                    return (
+                                        <option key={index} value={element}>{element}</option>
+                                    )
+                                })}
+                            </select>
+                        </div>}
                     </div>
                     <div className={accountInfo.itemButton}>
                     {!nationalityEdit ? (<button className={accountInfo.editButton} onClick={() => setNationalityEdit(true)}>Sửa</button>)
@@ -147,7 +210,14 @@ const AccountInfo = () => {
                         <h4>Giới tính</h4>
                     </div>
                     <div className={accountInfo.itemContent}>
-                        <h3>Chọn giới tính của bạn</h3>
+                    {!genderEdit ? (<p>{userById.gender !== -1 ? userById.gender : 'Chọn giới tính của bạn'}</p>)
+                        : <div className={accountInfo.selectWrapper}>
+                            <select className={accountInfo.selectGender}>
+                                <option value='default'>Chọn giới tính của bạn</option>
+                                <option value='male'>Nam</option>
+                                <option value='female'>Nữ</option>
+                            </select>
+                        </div>}
                     </div>
                     <div className={accountInfo.itemButton}>
                     {!genderEdit ? (<button className={accountInfo.editButton} onClick={() => setGenderEdit(true)}>Sửa</button>)
@@ -163,7 +233,10 @@ const AccountInfo = () => {
                         <h4>Địa chỉ</h4>
                     </div>
                     <div className={accountInfo.itemContent}>
-                        <h3>Thêm địa chỉ của bạn</h3>
+                    {!addressEdit ? (<p>{userById.address ? userById.address : 'Thêm địa chỉ của bạn'}</p>)
+                        : (<div className={accountInfo.inputWrapper}>
+                            <textarea placeholder="Địa chỉ"></textarea>
+                        </div>)}
                     </div>
                     <div className={accountInfo.itemButton}>
                     {!addressEdit ? (<button className={accountInfo.editButton} onClick={() => setAddressEdit(true)}>Sửa</button>)

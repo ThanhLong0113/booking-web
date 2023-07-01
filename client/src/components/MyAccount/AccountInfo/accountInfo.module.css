@@ -34,7 +34,7 @@
 
 .itemName {
     grid-area: name;
-    width: 100px;    
+    width: 100px;
 }
 
 .itemContent {
@@ -103,7 +103,7 @@
 .inputWrapper {
     display: flex;
     flex-direction: row;
-    gap: 15px
+    gap: 15px;
 }
 
 .inputWrapper input {
@@ -111,8 +111,46 @@
     padding: 10px 15px;
     border-radius: 20px;
     outline: none;
+    flex-grow: 1;
+    max-width: 250px;
 }
 
 .inputWrapper input:focus {
     border: 1px solid var(--blue);
+}
+
+.inputWrapper textarea {
+    resize: none;
+    width: 400px;
+    height: 40px;
+    padding: 10px;
+    border: 1px solid var(--gray);
+    outline: none;
+}
+
+.inputWrapper textarea:focus {
+    border: 1px solid var(--blue);
+}
+
+.selectNationality {
+    padding: 10px;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background: url('https://upload.wikimedia.org/wikipedia/commons/thumb/4/4b/Feather-arrows-chevron-down.svg/1024px-Feather-arrows-chevron-down.svg.png') no-repeat;
+    background-position: right;
+    background-size: 18px;
+    outline: none;
+}
+
+.selectGender {
+    padding: 10px;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background: url('https://upload.wikimedia.org/wikipedia/commons/thumb/4/4b/Feather-arrows-chevron-down.svg/1024px-Feather-arrows-chevron-down.svg.png') no-repeat;
+    background-position: right;
+    background-size: 18px;
+    outline: none;
+    width: 200px
 }

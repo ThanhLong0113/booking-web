@@ -38,7 +38,13 @@ exports.findUserById = async (req, res) => {
 
 exports.updateUser = async (req, res) => {
     try {
-        const updateUser = await UserModel.findByIdAndUpdate(req.params.id, req.body)
+        const updateUser = await UserModel.findById(req.params.id)
+        for(let i=0; i<req.body.field.length; i++) {
+            const updateField = req.body.field[i]
+            const updateValue = req.body.value[i];
+            updateUser[updateField] = updateValue;
+        }
+        await updateUser.save();
         res.json({ updateUser: updateUser, status: "success" })
     } 
     catch (err) {

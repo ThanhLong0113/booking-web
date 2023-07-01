@@ -19,10 +19,11 @@ export const useUserById = (id) => {
             setUserById(res.data.userById)
             setIsLoading(false)
         })
-    }, [id])
+    }, [id, isLoading])
 
     return {
         isLoading,
-        userById
+        userById,
+        setIsLoading
     }
 }

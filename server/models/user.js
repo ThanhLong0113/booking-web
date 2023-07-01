@@ -31,7 +31,7 @@ const userSchema = new Schema({
         default: null
     },
     birth_day: {
-        type: Date,
+        type: String,
         default: null
     },
     nationality: {
