@@ -59,7 +59,7 @@ const Header = () => {
                             {userName && (<p>{`Hi, ${userName}`}</p>)}
                             {isDropdown && (
                                 <div className={header.dropdownWrapper}>
-                                    <button className={header.dropdownButton}>
+                                    <button className={header.dropdownButton} onClick={() => navigate(`/my-account`)}>
                                         <BsCircleFill size={14}/>
                                         <p>Tài khoản của tôi</p>
                                     </button>

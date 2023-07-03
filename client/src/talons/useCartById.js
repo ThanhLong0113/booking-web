@@ -19,10 +19,11 @@ export const useCartById = (cart_id) => {
             setCartById(res.data.cartById)
             setIsLoading(false)
         })
-    }, [cart_id])
+    }, [cart_id, isLoading])
 
     return {
         isLoading,
-        cartById
+        cartById,
+        setIsLoading
     }
 }

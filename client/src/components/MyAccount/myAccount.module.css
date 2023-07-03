@@ -1,5 +1,5 @@
 .wrapper {
-    gap: 15px;
+    gap: 30px;
     width: 1200px;
     padding: 30px;
     margin: auto;
@@ -11,8 +11,55 @@
 .leftMenu {
     width: 300px;
     border: 1px solid var(--blue);
-    height: 300px;
+    height: max-content;
     grid-area: menu;
+    display: flex;
+    flex-direction: column;
+}
+
+.leftTab {
+    background-color: white;
+    border: none;
+    display: flex;
+    flex-direction: row;
+    gap: 15px;
+    align-items: center;
+    padding: 20px;  
+    cursor: pointer;
+    color: black;
+    font-weight: bold;
+    font-size: 16px;
+    transition: color 300ms;
+}
+
+.leftTab:hover {
+    color: var(--blue);
+}
+
+.leftTabSelected {
+    background-color: var(--blue);
+    border: none;
+    display: flex;
+    flex-direction: row;
+    gap: 15px;
+    align-items: center;
+    padding: 20px;
+    border-bottom: 1px solid var(--blue);
+    cursor: pointer;
+    color: white;
+    font-weight: bold;
+    font-size: 16px;
+    transition: background-color 300ms;
+}
+
+.leftIcon {
+
+}
+
+.leftTitle {
+    flex-grow: 1;
+    text-align: left;
+    font-size: 16px;
 }
 
 .body {

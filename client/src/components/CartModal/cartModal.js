@@ -60,7 +60,14 @@ const CartModal = ({ isOpen, setIsOpen, setShowModal, hotelData, roomChoose, set
                 setIsOpenMsg(true)
             }, 300)
         } catch (err) {
-            setMsgContent({ error: err.response.data.error })
+            /*setIsLoading(false)
+            setIsOpen(false)
+            setTimeout(() => {
+                setShowModal(false)
+                setMsgContent({ error: err.response.data.error })
+                setShowModalMsg(true)
+                setIsOpenMsg(true)
+            }, 300)*/
         }
     }
 

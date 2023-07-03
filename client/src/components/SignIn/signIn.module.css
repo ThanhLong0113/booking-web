@@ -50,6 +50,13 @@
     padding-left: 1rem;
 }
 
+.inputError {
+    color: red;
+    font-weight: 700;
+    font-size: 12px;
+    padding-left: 1rem;
+}
+
 .formWrapper input {
     height: 40px;
     padding: 0 1rem;

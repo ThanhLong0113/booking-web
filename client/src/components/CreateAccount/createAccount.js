@@ -1,9 +1,11 @@
 import React, { useState } from "react";
+import axios from "axios";
+import bcrypt from 'bcryptjs';
 import { useNavigate } from "react-router-dom";
+import { validateFirstName, validateLastName, validateEmail, validatePassword } from "../../talons/validation";
 import Header from "../Header";
 import createAccount from './createAccount.module.css'
 import CreateAccountImage from '../../assets/images/create_account_image.jpg'
-import axios from "axios";
 import LoadingClip from "../LoadingClip/loadingClip";
 
 const CreateAccount = () => {
@@ -14,6 +16,11 @@ const CreateAccount = () => {
     const [error, setError] = useState()
     const [isLoading, setIsLoading] = useState(false)
 
+    const [firstNameErr, setFirstNameErr] = useState()
+    const [lastNameErr, setLastNameErr] = useState()
+    const [emailErr, setEmailErr] = useState()
+    const [passwordErr, setPasswordErr] = useState()
+
     const navigate = useNavigate()
 
     async function createUser() {
@@ -23,7 +30,7 @@ const CreateAccount = () => {
                 first_name: firstName,
                 last_name: lastName,
                 email: email,
-                password: password
+                password: bcrypt.hashSync(password, 10)
             });
 
             const cart_id = createUser.data.newUser.cart_id
@@ -41,8 +48,28 @@ const CreateAccount = () => {
         }
     }
 
+    const checkInput = () => {
+        const validFN = validateFirstName(firstName)
+        const validLN = validateLastName(lastName)
+        const validEmail = validateEmail(email)
+        const validPassword = validatePassword(password)
+
+        if(validFN.length > 0) setFirstNameErr(validFN)
+        else setFirstNameErr('')
+        if(validLN.length > 0) setLastNameErr(validLN)
+        else setLastNameErr('')
+        if(validEmail.length > 0) setEmailErr(validEmail)
+        else setEmailErr('')
+        if(validPassword.length > 0) setPasswordErr(validPassword)
+        else setPasswordErr('')
+
+        if(validFN.length > 0 || validLN.length > 0 || validEmail.length > 0 || validPassword.length > 0) return false
+        else return true
+    }
+
     const handleSubmit = () => {
-        createUser()
+        const checkInputResult = checkInput()
+        if(checkInputResult) createUser()
     }
 
     if(isLoading) return <LoadingClip/>
@@ -62,18 +89,22 @@ const CreateAccount = () => {
                     <div>
                         <p className={createAccount.formInputLabel}>Họ</p>
                         <input placeholder="Họ" onChange={(e) => setFirstName(e.target.value)}></input>
+                        {firstNameErr?.length > 0 && <p className={createAccount.inputError}>{firstNameErr}</p>}
                     </div>
                     <div>
                         <p className={createAccount.formInputLabel}>Tên</p>
                         <input placeholder="Tên" onChange={(e) => setLastName(e.target.value)}></input>
+                        {lastNameErr?.length > 0 && <p className={createAccount.inputError}>{lastNameErr}</p>}
                     </div>
                     <div>
                         <p className={createAccount.formInputLabel}>Email</p>
                         <input placeholder="Email" onChange={(e) => setEmail(e.target.value)}></input>
+                        {emailErr?.length > 0 && <p className={createAccount.inputError}>{emailErr}</p>}
                     </div>
                     <div>
                         <p className={createAccount.formInputLabel}>Password</p>
                         <input placeholder="Password" onChange={(e) => setPassword(e.target.value)} type="password"></input>
+                        {passwordErr?.length > 0 && <p className={createAccount.inputError}>{passwordErr}</p>}
                     </div>
                     {error?.length > 0 && <p className={createAccount.formError}>{error}</p>}
                     <button onClick={handleSubmit}>Sign Up</button>

@@ -106,6 +106,7 @@
     cursor: pointer;
     transition: background-color 500ms;
     width: max-content;
+    margin-top: 15px;
 }
 
 .gridButton:hover {

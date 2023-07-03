@@ -11,6 +11,9 @@ const SignIn = () => {
     const [error, setError] = useState()
     const navigate = useNavigate()
 
+    const [emailErr, setEmailErr] = useState()
+    const [passwordErr, setPasswordErr] = useState()
+
     async function logIn() {
         try {
             const res = await axios.get('http://localhost:5000/users', {
@@ -28,8 +31,18 @@ const SignIn = () => {
         }
     }
 
+    const checkInput = () => {
+        if(!(email && email.trim().length > 0)) setEmailErr('Đây là ô bắt buộc nhập')
+        else setEmailErr('')
+        if(!(password && password.trim().length > 0)) setPasswordErr('Đây là ô bắt buộc nhập')
+        else setPasswordErr('')
+        if(!(email && email.trim().length > 0 && password && password.trim().length > 0)) return false
+        else return true
+    }
+
     const handleSubmit = () => {
-        logIn()
+        const checkInputResult = checkInput()
+        if(checkInputResult) logIn()
     }
 
     return (
@@ -47,10 +60,12 @@ const SignIn = () => {
                     <div>
                         <p className={signIn.formInputLabel}>Email</p>
                         <input placeholder="Email" onChange={(e) => setEmail(e.target.value)}></input>
+                        {emailErr?.length > 0 && <p className={signIn.inputError}>{emailErr}</p>}
                     </div>
                     <div>
                         <p className={signIn.formInputLabel}>Password</p>
                         <input placeholder="Password" onChange={(e) => setPassword(e.target.value)} type="password"></input>
+                        {passwordErr?.length > 0 && <p className={signIn.inputError}>{passwordErr}</p>}
                     </div>
                     {error?.length > 0 && (<p className={signIn.formError}>{error}</p>)}
                     <button onClick={handleSubmit}>Sign in</button>

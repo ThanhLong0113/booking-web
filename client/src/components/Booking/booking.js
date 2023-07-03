@@ -16,13 +16,12 @@ const Booking = () => {
         bookingsByCustomer
     } = getBookingsByCustomer
 
-    if (isLoading) return <LoadingClip />
-    console.log(bookingsByCustomer)
+    if (isLoading) return <LoadingClip/>
 
     return (
         <div>
             <Header />
-            {!bookingsByCustomer ? (<div className={booking.noOrderWrapper}>
+            {bookingsByCustomer && bookingsByCustomer.length === 0 ? (<div className={booking.noOrderWrapper}>
                 <img src={NoOrder} alt='' className={booking.noOrderImage}></img>
                 <h2 className={booking.noOrderTitle}>Có vẻ như bạn chưa đặt đơn hàng nào!</h2>
                 <button className={booking.backButton} onClick={() => navigate('/')}>Trở lại màn hình chính</button>

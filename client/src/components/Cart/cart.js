@@ -22,6 +22,7 @@ const Cart = () => {
     const getCartById = useCartById(cart_id)
     const {
         isLoading,
+        setIsLoading,
         cartById
     } = getCartById
 
@@ -71,9 +72,22 @@ const Cart = () => {
         createBooking()
     }
 
-    console.log(cartById)
+    async function removeFromCart(items) {
+        setIsLoading(true)
+        try {
+            await axios.put(`http://localhost:5000/carts/remove/${cart_id}`, items);
+            setIsLoading(false)
+        } catch (err) {
+            setIsLoading(false)
+        }
+    }
 
-    if (isLoading || isLoadingCheckout) return <LoadingClip />
+    const handleRemoveFromCart = (element) => {
+        const items = cartById.items.filter(ele => ele._id !== element._id)
+        removeFromCart(items)
+    }
+
+    if (isLoading || isLoadingCheckout) return <LoadingClip/>
 
     return (
         <div>
@@ -99,7 +113,7 @@ const Cart = () => {
                                                 <p>{element.hotel.address}</p>
                                             </div>
                                             <div className={cart.deleteButton}>
-                                                <button>
+                                                <button onClick={() => handleRemoveFromCart(element)}>
                                                     <VscTrash size={24} />
                                                 </button>
                                             </div>
@@ -126,13 +140,13 @@ const Cart = () => {
                     <div className={cart.checkoutWrapper}>
                         <div className={cart.priceWrapper}>
                             <h3>Total</h3>
-                            {listSelected.length > 0 && listSelected.find((element) => element.checked) &&
+                            {listSelected.length > 0 && listSelected.find((element) => element?.checked) &&
                                 <h3 className={cart.priceTotal}>{`${totalPrice.toLocaleString()} VNĐ`}</h3>}
                         </div>
-                        {listSelected.length > 0 && listSelected.find((element) => element.checked)
-                            ? <p className={cart.numberItem}>{`${listSelected.filter((element) => element.checked).length} đơn đặt phòng đã được chọn`}</p>
+                        {listSelected.length > 0 && listSelected.find((element) => element?.checked)
+                            ? <p className={cart.numberItem}>{`${listSelected.filter((element) => element?.checked).length} đơn đặt phòng đã được chọn`}</p>
                             : <p className={cart.numberItem}>Bạn chưa chọn đơn đặt phòng nào</p>}
-                        <button disabled={!(listSelected.length > 0 && listSelected.find((element) => element.checked))}
+                        <button disabled={!(listSelected.length > 0 && listSelected.find((element) => element?.checked))}
                             className={cart.checkoutButton} onClick={handleCheckout}>Checkout</button>
                     </div>
                 </div>

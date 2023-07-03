@@ -15,8 +15,6 @@ const AddCartMessage = ({ isOpenMsg, setIsOpenMsg, setShowModalMsg, msgContent }
         setShowModalMsg(false)
     }, 3300)
 
-    console.log(msgContent)
-
     return (
         <Modal
             isOpen={isOpenMsg}
@@ -34,7 +32,7 @@ const AddCartMessage = ({ isOpenMsg, setIsOpenMsg, setShowModalMsg, msgContent }
             }}
             closeTimeoutMS={300}>
             <div className={msgContent.item ? addCartMessage.wrapper : addCartMessage.errorWrapper}>
-                {msgContent.item ? <BsFillCheckCircleFill size={24} color='green'/> : <AiFillCloseCircle color='red'/>}
+                {msgContent.item ? <BsFillCheckCircleFill size={24} color='green'/> : <AiFillCloseCircle size={24} color='red'/>}
                 {msgContent.item ? <p className={addCartMessage.messageTitle}>{`${msgContent.item.quantity} phòng ${msgContent.item.roomName} của bạn tại ${msgContent.item.hotel.name} đã được thêm vào giỏ hàng`}</p> 
                     : <p>{msgContent.error}</p>}
             </div>

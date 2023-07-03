@@ -12,6 +12,7 @@ const Footer = () => {
                 <img src={Logo} alt='' className={footer.logo}></img>
                 <a className={footer.githubButton} href='https://github.com/ThanhLong0113/booking-web'>
                     <FaGithub size={28} color='black'/>
+                    <h5 className={footer.githubText}>Github</h5>
                 </a>
             </div>
             <p></p>

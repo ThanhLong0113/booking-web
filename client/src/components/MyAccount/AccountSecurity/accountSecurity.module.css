@@ -1,5 +1,6 @@
 .wrapper {
     width: 100%;
+    min-height: calc(100vh - 320.75px);
 }
 
 .infoLoading {
@@ -34,7 +35,7 @@
 
 .itemName {
     grid-area: name;
-    width: 100px;
+    width: 120px;
 }
 
 .itemContent {
@@ -122,61 +123,11 @@
     border: 1px solid var(--blue);
 }
 
-.inputWrapper textarea {
-    resize: none;
-    width: 400px;
-    height: 40px;
-    padding: 10px;
-    border: 1px solid var(--gray);
-    outline: none;
-}
-
-.inputWrapper textarea:focus {
-    border: 1px solid var(--blue);
-}
-
-.selectNationality {
-    padding: 10px;
-    appearance: none;
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    background: url('https://upload.wikimedia.org/wikipedia/commons/thumb/4/4b/Feather-arrows-chevron-down.svg/1024px-Feather-arrows-chevron-down.svg.png') no-repeat;
-    background-position: right;
-    background-size: 18px;
-    outline: none;
-    font-size: 16px;
-}
-
-.selectGender {
-    padding: 10px;
-    appearance: none;
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    background: url('https://upload.wikimedia.org/wikipedia/commons/thumb/4/4b/Feather-arrows-chevron-down.svg/1024px-Feather-arrows-chevron-down.svg.png') no-repeat;
-    background-position: right;
-    background-size: 18px;
-    outline: none;
-    width: 200px
-}
-
-.birthDayButton {
-    background-color: var(--blue);
-    border: none;
-    padding: 10px 20px;
-    color: white;
-    font-weight: bold;
-    border-radius: 20px;
-    cursor: pointer;
-    font-size: 14px;
-}
-
-.birthDayButton:hover {
-    background-color: rgba(0, 108, 228, 0.7);
-}
-
 .inputError {
     font-size: 12px;
     font-weight: 700;
     color: red !important;
     margin-left: 1rem;
+    max-width: 200px;
+    word-break: break-word !important;
 }

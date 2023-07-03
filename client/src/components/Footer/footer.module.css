@@ -27,4 +27,6 @@
     background-color: transparent;
     border: none;
     cursor: pointer;
+    text-decoration-line: none;
+    color: black;
 }

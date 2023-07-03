@@ -1,4 +1,5 @@
 const UserModel = require('../models/user')
+const bcrypt = require('bcryptjs')
 
 exports.createUser = async (req, res) => {
     try {
@@ -16,7 +17,7 @@ exports.findUser = async (req, res) => {
     try {
         const existedUser = await UserModel.findOne({ email: req.query.email })
         if(existedUser) {
-            if(existedUser.password === req.query.password) return res.status(200).json({ existedUser: existedUser })
+            if(bcrypt.compareSync(req.query.password, existedUser.password)) return res.status(200).json({ existedUser: existedUser })
             else return res.status(400).json({ error: 'Thông tin đăng nhập không chính xác!' })
         }
         else return res.status(400).json({ error: 'Thông tin đăng nhập không chính xác!' })
@@ -41,8 +42,14 @@ exports.updateUser = async (req, res) => {
         const updateUser = await UserModel.findById(req.params.id)
         for(let i=0; i<req.body.field.length; i++) {
             const updateField = req.body.field[i]
-            const updateValue = req.body.value[i];
-            updateUser[updateField] = updateValue;
+            if(updateField === 'password') {
+                const updateValue = bcrypt.hashSync(req.body.value[i], 10);
+                updateUser[updateField] = updateValue;
+            }
+            else {
+                const updateValue = req.body.value[i];
+                updateUser[updateField] = updateValue;
+            }
         }
         await updateUser.save();
         res.json({ updateUser: updateUser, status: "success" })
@@ -54,7 +61,7 @@ exports.updateUser = async (req, res) => {
 
 exports.deleteUser = async (req, res) => {
   try {
-    const deleteUser = await UserModel.findOneAndDelete(req.params.id)
+    const deleteUser = await UserModel.findByIdAndDelete(req.params.id)
     res.json({ deleteUser: deleteUser, status: "success" })
   } catch (err) {
     res.status(500).json({ error: err.message })
