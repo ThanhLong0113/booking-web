@@ -9,11 +9,11 @@ const AddCartMessage = ({ isOpenMsg, setIsOpenMsg, setShowModalMsg, msgContent }
 
     setTimeout(() => {
         setIsOpenMsg(false)
-    }, 3000)
+    }, 2000)
 
     setTimeout(() => {
         setShowModalMsg(false)
-    }, 3300)
+    }, 2300)
 
     return (
         <Modal

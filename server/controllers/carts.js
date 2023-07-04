@@ -1,7 +1,7 @@
 const CartModel = require('../models/cart')
 const RoomModel = require('../models/room')
 const BookingModel = require('../models/booking')
-const { parse, addDays } = require('date-fns');
+const { parse } = require('date-fns');
 
 exports.createCart = async (req, res) => {
     try {
@@ -28,27 +28,31 @@ exports.addToCart = async (req, res) => {
         const existedCart = await CartModel.findOne({ cart_id: req.params.id })
         const roomsByHotel = await RoomModel.find({ hotel_id: req.body.hotel.hotel_id })
         const allBookings = await BookingModel.find()
-
-        let bookedQuantity = 0
-        const startDate = addDays(parse(req.body.checkIn, 'dd/MM/yyyy', new Date()), 1)
-        const endDate = addDays(parse(req.body.checkOut, 'dd/MM/yyyy', new Date()), 1)
+        const startDate = parse(req.body.checkIn, 'dd/MM/yyyy', new Date())
+        const endDate = parse(req.body.checkOut, 'dd/MM/yyyy', new Date())
+        const roomsLeft = roomsByHotel.find(element => element._id == req.body.roomId).roomsLeft
+        let startMatch = 0
+        let endMatch = 0
     
         for(let i=0; i<allBookings.length; i++) {
             for(let j=0; j<allBookings[i].items.length; j++) {
-                const bookedStartDate = addDays(parse(allBookings[i].items[j].checkIn, 'dd/MM/yyyy', new Date()), 1)
-                const bookedEndDate = addDays(parse(allBookings[i].items[j].checkOut, 'dd/MM/yyyy', new Date()), 1)
-                console.log(bookedStartDate, bookedEndDate)
-                if((bookedStartDate <= startDate && startDate <= bookedEndDate) || 
-                (bookedStartDate <= endDate && endDate <= bookedEndDate)) {
-                    bookedQuantity += 1
+                const bookedStartDate = parse(allBookings[i].items[j].checkIn, 'dd/MM/yyyy', new Date())
+                const bookedEndDate = parse(allBookings[i].items[j].checkOut, 'dd/MM/yyyy', new Date())
+                if(bookedStartDate <= startDate && startDate <= bookedEndDate) {
+                    startMatch += allBookings[i].items[j].quantity
+                }
+                if(bookedStartDate <= endDate && endDate <= bookedEndDate) {
+                    endMatch += allBookings[i].items[j].quantity
                 }
             }
         }
-        console.log(bookedQuantity)
 
         const items = existedCart.items
         if(req.body.quantity > roomsByHotel.find(element => element._id == req.body.roomId).roomsLeft) {
-            return res.status(400).json({ error: 'Số lượng phòng cần đặt vượt quá giới hạn của khách sạn'})
+            return res.status(400).json({ error: 'Số lượng phòng cần đặt vượt quá giới hạn của khách sạn.'})
+        }
+        else if(startMatch+req.body.quantity > roomsLeft || endMatch+req.body.quantity > roomsLeft) {
+            return res.status(400).json({ error: 'Khách sạn không còn đủ phòng trống trong khoảng thời gian này.'})
         }
         else {
             items.push(req.body)

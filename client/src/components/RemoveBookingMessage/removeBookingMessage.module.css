@@ -1,0 +1,61 @@
+.portal {
+    position: fixed;
+    top: 0;
+    z-index: 2;
+    height: 100vh;
+}
+
+.overlay {
+    opacity: 0;
+    transition: all 300ms ease-in-out;
+}
+
+.overlayAfterOpen {
+    opacity: 1;
+}
+
+.overlayBeforeClose {
+    opacity: 0;
+}
+
+.content {
+    width: 100vw;
+}
+
+.wrapper {
+    background-color: rgb(243, 249, 242);
+    width: 300px;
+    height: max-content;
+    padding: 20px;
+    border-radius: 30px;
+    position: absolute;
+    bottom: 30px;
+    right: 30px;
+    display: flex;
+    flex-direction: row;
+    gap: 15px;
+}
+
+.errorWrapper {
+    background-color: #ffe0e0;
+    width: 300px;
+    height: max-content;
+    padding: 20px;
+    border-radius: 30px;
+    position: absolute;
+    bottom: 30px;
+    right: 30px;
+    display: flex;
+    flex-direction: row;
+    gap: 15px;
+}
+
+.messageTitle {
+    color: rgb(50, 169, 35);
+    font-size: 14px;
+}
+
+.messgaeTitleError {
+    color: red;
+    font-size: 14px;
+}

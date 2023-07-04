@@ -63,7 +63,7 @@
 
 .hotelDetails {
     display: grid;
-    grid-template-areas: 'image info';
+    grid-template-areas: 'image info remove';
     grid-template-columns: auto 1fr;
     gap: 15px;
 }
@@ -104,4 +104,20 @@
 
 .dateInfo p {
     color: var(--gray);
+}
+
+.removeBooked {
+    height: max-content;
+    padding: 10px 15px;
+    background-color: var(--blue);
+    border: none;
+    border-radius: 20px;
+    color: white;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background-color 500ms;
+}
+
+.removeBooked:hover {
+    background-color: rgba(0, 108, 228, 0.7);
 }

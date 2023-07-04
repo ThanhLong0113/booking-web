@@ -16,6 +16,7 @@ const CartModal = ({ isOpen, setIsOpen, setShowModal, hotelData, roomChoose, set
     const [endDate, setEndDate] = useState(new Date())
     const [quantity, setQuantity] = useState(1)
     const [isLoading, setIsLoading] = useState(false)
+    const [errorMsg, setErrorMsg] = useState()
     const cart_id = localStorage.getItem('cart_id')
     const navigate = useNavigate()
 
@@ -28,10 +29,17 @@ const CartModal = ({ isOpen, setIsOpen, setShowModal, hotelData, roomChoose, set
             }, 300)
         }
         setIsLoading(true)
+        setErrorMsg()
         
         try {
             const subDate = endDate.getTime() - startDate.getTime();
             const diffInDays = Math.ceil(subDate / (1000 * 60 * 60 * 24));
+
+            if(diffInDays === 0) {
+                setIsLoading(false)
+                setErrorMsg('Thời gian check-out phải cách thời gian check-in ít nhất 1 ngày.')
+                throw new Error('Thời gian check-out phải cách thời gian check-in ít nhất 1 ngày.')
+            }
 
             const item = {
                 hotel: {
@@ -60,14 +68,8 @@ const CartModal = ({ isOpen, setIsOpen, setShowModal, hotelData, roomChoose, set
                 setIsOpenMsg(true)
             }, 300)
         } catch (err) {
-            /*setIsLoading(false)
-            setIsOpen(false)
-            setTimeout(() => {
-                setShowModal(false)
-                setMsgContent({ error: err.response.data.error })
-                setShowModalMsg(true)
-                setIsOpenMsg(true)
-            }, 300)*/
+            setIsLoading(false)
+            setErrorMsg(err.response.data.error)
         }
     }
 
@@ -151,6 +153,7 @@ const CartModal = ({ isOpen, setIsOpen, setShowModal, hotelData, roomChoose, set
                         </button>
                     </div>
                 </div>
+                {errorMsg && errorMsg.length > 0 && !isLoading && (<h4 className={cartModal.errorMsg}>{errorMsg}</h4>)}
                 {isLoading && (<div className={cartModal.addCartLoading}>
                     <SyncLoader size={12} color='white' speedMultiplier={1.5} />
                 </div>)}

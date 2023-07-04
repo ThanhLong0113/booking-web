@@ -19,10 +19,11 @@ export const useBookingsByCustomer = (id) => {
             setBookingsByCustomer(res.data.bookingsByCustomer)
             setIsLoading(false)
         })
-    }, [id])
+    }, [id, isLoading])
 
     return {
         isLoading,
-        bookingsByCustomer
+        bookingsByCustomer,
+        setIsLoading
     }
 }

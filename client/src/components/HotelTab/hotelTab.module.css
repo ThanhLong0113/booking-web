@@ -22,7 +22,7 @@
     border-bottom: 2px solid var(--blue);
     padding: 10px 20px;
     color: var(--blue);
-    transition: border-bottom 300ms, color 300ms;
+    transition: border-bottom 500ms, color 500ms;
     cursor: pointer;
 }
 
@@ -32,7 +32,7 @@
     border-bottom: 2px solid var(--gray);
     padding: 10px 20px;
     color: var(--gray);
-    transition: border-bottom 300ms, color 300ms;
+    transition: border-bottom 500ms, color 500ms;
     cursor: pointer;
 }
 

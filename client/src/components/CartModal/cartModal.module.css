@@ -139,3 +139,9 @@
     align-items: center;
     padding: 20px;
 }
+
+.errorMsg {
+    text-align: center;
+    color: rgb(220, 4, 4);
+    margin-top: 15px;
+}
